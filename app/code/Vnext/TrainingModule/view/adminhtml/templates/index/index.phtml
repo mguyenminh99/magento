@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @var \Vnext\TrainingModule\Block\Adminhtml\Index $block
+ */
+?>
+<style>
+
+</style>
+<?php 
+
+    $dataStudent = $this->getListNews(); 
+    echo count($dataStudent); 
+?>
+
+<table border=1 table id="table" data-toggle="table">
+<thead>
+    <tr align=center>
+        <th>Id</th>
+        <th >Fist Name</th>
+        <th>Gender</th>
+        <th>Date of birth</th>
+        <th>Address</th>
+    </tr>
+</thead>
+   
+<tbody>
+    <?php foreach ($dataStudent as $student) : ?>
+        <tr>
+            <td><?= $student->getEntityId() ?></td>
+            <td><?= $student->getName() ?></td>
+            <td><?= ($student->getGender() == 1)? 'Nam' : 'Nữ' ;?></td>
+            <td><?= $student->getDob() ?></td>
+            <td><?= $student->getAddress() ?></td>
+        </tr>
+    <?php endforeach; ?>
+</tbody>
+    
+</table>
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table comment="digitalfree_holiday_holiday Table" engine="innodb" name="digitalfree_holiday_holiday" resource="default">
+		<column comment="Entity Id" identity="true" name="holiday_id" nullable="false" padding="6" unsigned="true" xsi:type="smallint"/>
+		<constraint referenceId="PRIMARY" xsi:type="primary">
+			<column name="holiday_id"/>
+		</constraint>
+		<column default="00000" length="10" name="store_code" nullable="false" xsi:type="varchar"/>
+		<column name="holiday_date" nullable="false" xsi:type="date"/>
+		<column name="holiday_type" nullable="true" xsi:type="smallint"/>
+		<constraint referenceId="holiday_holiday_unique" xsi:type="unique">
+			<column name="store_code" />
+			<column name="holiday_date" />
+		</constraint>
+	</table>
+</schema>

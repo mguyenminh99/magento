@@ -1,0 +1,30 @@
+<?php
+/** @var \Vnext\TrainingModule\Block\Template $block */
+
+$student = $this->getStudent();
+?>
+
+<div class="template">
+<table border=1 table id="table" data-toggle="table">
+<thead>
+    <tr align=center>
+        <th>Id</th>
+        <th >Fist Name</th>
+        <th>Gender</th>
+        <th>Date of birth</th>
+        <th>Address</th>
+    </tr>
+</thead>
+   
+<tbody>
+        <tr>
+            <td><?= $student->getEntityId() ?></td>
+            <td><?= $student->getName() ?></td>
+            <td><?= ($student->getGender() == 1)? 'Nam' : 'Nữ' ;?></td>
+            <td><?= $student->getDob() ?></td>
+            <td><?= $student->getAddress() ?></td>
+        </tr>
+</tbody>
+    
+</table>
+</div>
