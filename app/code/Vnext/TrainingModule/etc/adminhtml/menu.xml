@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Vnext_TrainingModule::helloworld" title="Students" module="Vnext_TrainingModule" sortOrder="51" resource="Vnext_TrainingModule::helloworld"/>
+        <add id="Vnext_TrainingModule::post" title="Manage Students" module="Vnext_TrainingModule" sortOrder="10" action="cms/post/index" resource="Vnext_TrainingModule::post" parent="Vnext_TrainingModule::helloworld"/>
+    </menu>
+</config>

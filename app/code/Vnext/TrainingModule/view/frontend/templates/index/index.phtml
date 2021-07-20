@@ -1,0 +1,80 @@
+<?php
+
+/**
+ * @var \Vnext\TrainingModule\Block\Index\Index $block
+ */
+?>
+<style>
+
+</style>
+<?php 
+
+    $dataStudent = $this->getListNews(); 
+    
+?>
+
+<div>
+    <form action="<?= $block->escapeHtml($block->getUrl('training2/index/students'))?>" method="GET">
+        <div>
+            <div class="form-group"><input type="text" name="name" class="form-controll" placeholder="Tên"  value="<?php if(isset($_GET['name'])){ echo $_GET['name']; } ?>"  ></div>
+            <div class="form-group"><input type="text" name="entity_id" class="form-controll" placeholder="ID" value="<?php if(isset($_GET['entity_id'])){ echo $_GET['entity_id']; } ?>" ></div>
+            <div class="form-group">
+                <select name="gender" id="">
+                    <option value="">-- Chọn giới tính --</option>
+                    <option value="1" <?php if(isset($_GET['gender']) && $_GET['gender'] == 1){ echo 'selected'; } ?> >Nam</option>
+                    <option value="2" <?php if(isset($_GET['gender']) && $_GET['gender'] == 2){ echo 'selected'; } ?> >Nữ</option>
+                </select>
+            </div>
+            <div class="d-flex" style="display: flex; justify-content: center;">
+                <label for="age">Age : </label>
+                <input style="width: 30%;" type="date" name="from"  placeholder="from" value="<?php if(isset($_GET['from'])){ echo $_GET['from']; } ?>" >
+                <input style="width: 30%;" type="date" name="to"  placeholder="to" value="<?php if(isset($_GET['to'])){ echo $_GET['to']; } ?>">
+            </div>
+            <div>
+                <input type="radio" id="id" name="sort" value="1" <?php if(isset($_GET['sort']) && $_GET['sort'] == 1){ echo 'checked'; } ?>>
+                <label for="id">ID</label>
+                <input type="radio" id="name" name="sort" value="2" <?php if(isset($_GET['sort']) && $_GET['sort'] == 2){ echo 'checked'; } ?> >
+                <label for="name">Name</label>
+                <input type="radio" id="dob" name="sort" value="3" <?php if(isset($_GET['sort']) && $_GET['sort'] == 3){ echo 'checked'; } ?> >
+                <label for="dob">Dob</label>
+            </div>
+        </div>
+        <div>
+            <div>
+                <input type="submit">
+            </div>
+        </div>
+    </form>
+</div>
+<table border=1 table id="table" data-toggle="table">
+<thead>
+    <tr align=center>
+        <th>Id</th>
+        <th >Fist Name</th>
+        <th>Gender</th>
+        <th>Date of birth</th>
+        <th>Address</th>
+    </tr>
+</thead>
+   
+<tbody>
+    <?php foreach ($dataStudent as $student) : ?>
+        <tr>
+            <td><?= $student->getEntityId() ?></td>
+            <td><?= $student->getName() ?></td>
+            <td><?= ($student->getGender() == 1)? 'Nam' : 'Nữ' ;?></td>
+            <td><?= $student->getDob() ?></td>
+            <td><?= $student->getAddress() ?></td>
+            <td><a href="/default/training2/index/detail?id=<?= $student->getEntityId()?>">Detail</a></td>
+        </tr>
+    <?php endforeach; ?>
+</tbody>
+    
+</table>
+
+<div class="training-content">
+    <?php if ($block->getPagerHtml()) : ?>
+        <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+    <?php else : ?>
+        <div class="message info empty"><span><?php echo __('No any record.'); ?></span></div>
+    <?php endif; ?>

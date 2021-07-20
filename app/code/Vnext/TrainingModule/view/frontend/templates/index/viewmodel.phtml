@@ -1,0 +1,23 @@
+<?php
+/** @var \Vnext\TrainingModule\Block\Template $block */
+
+
+$viewModel  = $block->getViewModel();
+$student = $viewModel->getListDataTraining();
+?>
+<div class="template">
+<?= $student->getName()?>
+<?="<br>"?>
+<?= $student->getGender()?>
+<?="<br>"?>
+<?= $student->getEntityId()?>
+<?="<br>"?>
+
+<?= $student->getDob()?>
+<?="<br>"?>
+
+<?= $student->getCreatedAt()?>
+<?="<br>"?>
+
+<?= $student->getUpdatedAt()?>
+</div>
