@@ -61,7 +61,7 @@
                     </actions>
                 </settings>
             </action>
-            <action name="change_status">
+            <!-- <action name="change_status">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">change_status</item>
@@ -75,7 +75,7 @@
                         <item name="paramName" xsi:type="string">status</item>
                     </argument>
                 </argument>
-            </action>
+            </action> -->
         </massaction>
         <paging name="listing_paging">
             <settings>

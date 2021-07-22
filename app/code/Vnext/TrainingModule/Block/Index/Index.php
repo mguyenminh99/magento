@@ -43,12 +43,7 @@ class Index extends \Magento\Framework\View\Element\Template
         $sort_by = $this->scopeConfig->getValue('section_training/general/enable2', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $sort_order = $this->scopeConfig->getValue('section_training/general/enable3', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $page_size = $this->scopeConfig->getValue('section_training/general/enable4', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        // $active = $this->scopeConfig->getValue('section_training/general/enable_active', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        // if($active == 'disable'){
-        //     return $this->redirectFactory->create()
-        //     ->setPath('404notfound');
-
-        // }
+    
         $page=($this->getRequest()->getParam('p'))? $this->getRequest()->getParam('p') : 1;
 
         $name=($this->getRequest()->getParam('name'))? $this->getRequest()->getParam('name') : '';

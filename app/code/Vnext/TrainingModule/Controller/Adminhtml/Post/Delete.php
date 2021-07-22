@@ -64,3 +64,8 @@ class Delete extends Action
         return $this->resultRedirect->create()->setPath('cms/post/index');
     }
 }
+
+        // $this->messageManager->addErrorMessage(__("Error"));
+		// $this->messageManager->addWarningMessage(__("Warning"));
+		// $this->messageManager->addNoticeMessage(__("Notice"));
+		// $this->messageManager->addSuccessMessage(__("Success"));

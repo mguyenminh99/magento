@@ -11,6 +11,7 @@ class Students extends \Magento\Framework\App\Action\Action
     protected $scopeConfig;
     protected $helpEmail;
     protected $redirectFactory;
+    protected $eventManager;
     /**
      * @param \Magento\Framework\App\Action\Context $context
      */
@@ -29,7 +30,6 @@ class Students extends \Magento\Framework\App\Action\Action
         $this->redirectFactory = $redirectFactory;
         $this->scopeConfig  = $scopeConfig;
         $this->helpEmail = $helpEmail;
-
     }
     /**
      * View page action
@@ -43,8 +43,9 @@ class Students extends \Magento\Framework\App\Action\Action
         if($active == 'disable'){
             return $this->redirectFactory->create()->setPath('404notfound');
         }
+        
         // return $this->helpEmail->sendEmail();
-
+     
         return $this->_pageFactory->create();
     }
 }
