@@ -4,19 +4,22 @@ namespace Vnext\TrainingModule\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\App\RequestInterface;
-use Magento\Catalog\Model\Product;
+use Magento\Catalog\Model\ProductFactory;
 
 class MyObserver implements ObserverInterface
 {
     protected $orderFactory;
-    protected $product;
+    protected $productFactory;
+    protected $stockRegistry;
 
     public function __construct(\Magento\Quote\Model\QuoteFactory $quoteFactory,
                                 \Magento\Sales\Model\Order $orderFactory,
-                                Product $product)
+                                ProductFactory $productFactory,
+                                \Magento\CatalogInventory\Api\StockRegistryInterface $stockRegistry )
     {
         $this->orderFactory = $orderFactory;
-        $this->product = $product;
+        $this->productFactory = $productFactory;
+        $this->stockRegistry = $stockRegistry;
     }
 
     public function execute(\Magento\Framework\Event\Observer $observer)
@@ -24,22 +27,15 @@ class MyObserver implements ObserverInterface
 
         $order = $observer->getEvent()->getOrder();
         $orderId = $order->getIncrementId();
-        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/khanh.log');
-        $logger = new \Zend\Log\Logger();
-        $logger->addWriter($writer);
-        $logger->info($orderId);
         $orderItems = $order->getAllItems();
-//        $getName = $orderItems->getName();
-//        $qty = $getName->setQuantity(0);
-//        var_dump($qty);die;
-        foreach ($orderItems as $item){
-            $logger->info($item->getName());
-            $logger->info($item->product->setQty('qty', 0));
-        }
-        die;
-//        echo '<pre>';
-//        var_dump(count($orderItems));die;
 
+        foreach ($orderItems as $item){
+            $sku = $item->getProduct()->getSku();
+            $qty = 0;
+            $stockItem = $this->stockRegistry->getStockItemBySku($sku);
+            $stockItem->setQty($qty);
+            $this->stockRegistry->updateStockItemBySku($sku, $stockItem);
+        }
     }
 
 }
