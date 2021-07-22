@@ -12,11 +12,24 @@
             </argument>
         </arguments>
     </type>
+
+    <!-- Api -->
     <preference for="Vnext\TrainingModule\Api\Data\TrainingInterface" type="Vnext\TrainingModule\Model\Training" />
     <preference for="Vnext\TrainingModule\Api\Data\TrainingSearchResultInterface" type="Vnext\TrainingModule\Model\TrainingSearchResult" />
     <preference for="Vnext\TrainingModule\Api\TrainingRepositoryInterface" type="Vnext\TrainingModule\Model\TrainingRepository" />
-    <!-- <preference for="Vnext\TrainingModule\Api\TrainingRepositoryInterface" type="Vnext\TrainingModule\Model\Training"/> -->
+    <!-- End Api -->
 
+    <!-- Custom get name product -->
+    <preference for="Magento\Catalog\Model\Product" type="Vnext\TrainingModule\Model\Catalog\Product" />
+    <!-- End -->
+
+    <!-- Custom plugin -->
+    <type name="Magento\Catalog\Model\Product">
+		<plugin name="Vnext_TrainingModule_Plugin_Magento_Catalog_Model_Product" type="Vnext\TrainingModule\Plugin\Magento\Catalog\Model\Product\Product" disabled="false" sortOrder="1" />
+	</type>
+    <!-- End Plugin -->
+
+    <!-- Admin Grid  -->
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
@@ -30,4 +43,7 @@
             <argument name="resourceModel" xsi:type="string">Vnext\TrainingModule\Model\ResourceModel\Training</argument>
         </arguments>
     </virtualType>
+    <!-- End Admin Grid -->
+
+   
 </config>
