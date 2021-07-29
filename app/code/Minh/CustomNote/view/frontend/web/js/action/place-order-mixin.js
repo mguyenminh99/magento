@@ -11,7 +11,7 @@ define(
                 if(paymentData['extension_attributes'] === indefined){
                     paymentData['extension_attributes'] = {};
                 }
-                var customerinput = $('.payment-method input[name="payment[method]"]:checked').parents('.payment-method').find('order-comment');
+                var customerinput = $('.payment-method input[name="payment[method]"]:checked').parents('.payment-method').find('.order-comment');
                 paymentData['extension_attributes']['custom-note'] = customerinput.val();
                 return originalAction(paymentData, messageContainer);
             })

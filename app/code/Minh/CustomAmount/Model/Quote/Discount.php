@@ -68,7 +68,7 @@ class Discount extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
 
         $address             = $shippingAssignment->getShipping()->getAddress();
         $label               = 'My Custom Discount';
-        $discountAmount      = -30;   
+        $discountAmount      = -50;   
         $appliedCartDiscount = 0;
         if($total->getDiscountDescription()) {
             // If a discount exists in cart and another discount is applied, the add both discounts.
@@ -78,8 +78,8 @@ class Discount extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
     	}    
     	
     	$total->setDiscountDescription($label);
-	$total->setDiscountAmount($discountAmount);
-	$total->setBaseDiscountAmount($discountAmount);
+	    $total->setDiscountAmount($discountAmount);
+	    $total->setBaseDiscountAmount($discountAmount);
         $total->setSubtotalWithDiscount($total->getSubtotal() + $discountAmount);
         $total->setBaseSubtotalWithDiscount($total->getBaseSubtotal() + $discountAmount);
         
@@ -120,14 +120,5 @@ class Discount extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
             ];
         }
         return $result;
-        
-        
-        /* in magento 1.x
-           $address->addTotal(array(
-                'code' => $this->getCode(),
-                'title' => $title,
-                'value' => $amount
-            ));
-         */
     }
 }
