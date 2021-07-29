@@ -12,7 +12,7 @@ define(
                     paymentData['extension_attributes'] = {};
                 }
                 var customerinput = $('.payment-method input[name="payment[method]"]:checked').parents('.payment-method').find('.order-comment');
-                paymentData['extension_attributes']['custom-note'] = customerinput.val();
+                paymentData['extension_attributes']['customer_note'] = customerinput.val();
                 return originalAction(paymentData, messageContainer);
             })
         }
