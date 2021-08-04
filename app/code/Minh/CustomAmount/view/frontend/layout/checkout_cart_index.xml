@@ -13,15 +13,17 @@
                     <item name="components" xsi:type="array">
                         <item name="block-totals" xsi:type="array">
                             <item name="children" xsi:type="array">
-                                <item name="before_grandtotal" xsi:type="array">
-                                    <item name="children" xsi:type="array">
-                                        <item name="testdiscount" xsi:type="array">
-                                            <item name="config" xsi:type="array">
-                                                <item name="title" xsi:type="string" translate="true">My Discount</item>
-                                            </item>
-                                        </item>
+
+
+                                <item name="fee" xsi:type="array">
+                                    <item name="component"  xsi:type="string">Minh_CustomAmount/js/view/checkout/cart/totals/fee</item>
+                                    <item name="sortOrder" xsi:type="string">20</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Minh_CustomAmount/checkout/cart/totals/fee</item>
+                                        <item name="title" xsi:type="string" translate="true">Vnext Custom Amount</item>
                                     </item>
                                 </item>
+
                             </item>
                         </item>
                     </item>
@@ -30,3 +32,4 @@
         </referenceBlock>
     </body>
 </page>
+
