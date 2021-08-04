@@ -263,6 +263,8 @@ return [
         'MSP_TwoFactorAuth' => 1,
         'MagePal_GmailSmtpApp' => 1,
         'Minh_CustomAmount' => 1,
+        'Minh_CustomImport' => 1,
+        'Minh_CustomMyAccount' => 1,
         'Minh_CustomNote' => 1,
         'Minh_CustomProduct' => 1,
         'Minh_CustomShipping' => 1,
