@@ -1,6 +1,6 @@
 <?php
 
-namespace Vnext\TrainingModule\Controller\Adminhtml\Post;
+namespace Minh\Project\Controller\Adminhtml\Region;
 
 use Magento\Backend\App\Action;
 use Minh\Project\Model\ResourceModel\Regions\CollectionFactory;
@@ -17,14 +17,14 @@ class Delete extends Action
 
     public function __construct(
         Action\Context $context,
-        RegionsFactory $studentFactory,
+        RegionsFactory $regionsFactory,
         Filter $filter,
         CollectionFactory $collectionFactory,
         RedirectFactory $redirectFactory
     )
     {
         parent::__construct($context);
-        $this->studentFactory = $studentFactory;
+        $this->regionsFactory = $regionsFactory;
         $this->filter = $filter;
         $this->collectionFactory = $collectionFactory;
         $this->resultRedirect = $redirectFactory;
@@ -38,9 +38,9 @@ class Delete extends Action
         $total = 0;
         $err = 0;
         foreach ($collection->getItems() as $item) {
-            $deleteStudent = $this->studentFactory->create()->load($item->getData('region_id'));
+            $deleteregions = $this->regionsFactory->create()->load($item->getData('region_id'));
             try {
-                $deleteStudent->delete();
+                $deleteregions->delete();
                 $total++;
             } catch (LocalizedException $exception) {
                 $err++;
@@ -64,8 +64,3 @@ class Delete extends Action
         return $this->resultRedirect->create()->setPath('project/post/index');
     }
 }
-
-        // $this->messageManager->addErrorMessage(__("Error"));
-		// $this->messageManager->addWarningMessage(__("Warning"));
-		// $this->messageManager->addNoticeMessage(__("Notice"));
-		// $this->messageManager->addSuccessMessage(__("Success"));

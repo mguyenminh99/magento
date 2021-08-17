@@ -4,6 +4,8 @@ namespace Vnext\TrainingModule\Controller\Adminhtml\Post;
 
 use Magento\Backend\App\Action;
 use Vnext\TrainingModule\Model\TrainingFactory;
+use Minh\Project\Model\ResourceModel\Regions\CollectionFactory;
+use Minh\Project\Model\RegionsFactory;
 use Magento\Backend\Model\View\Result\RedirectFactory;
 
 class Save extends Action
@@ -13,7 +15,7 @@ class Save extends Action
 
     public function __construct(
         Action\Context $context,
-        TrainingFactory $studentFactory,
+        RegionsFactory $studentFactory,
         RedirectFactory $redirectFactory
     )
     {
@@ -25,27 +27,33 @@ class Save extends Action
     public function execute()
     {
         $data = $this->getRequest()->getPostValue();
-        $id = !empty($data['entity_id']) ? $data['entity_id'] : null;
+        $id = !empty($data['region_id']) ? $data['region_id'] : null;
 
         $newData = [
-            'name' => $data['name'],
-            'gender' => $data['gender'],
-            'dob' => $data['dob'],
-            'address' => $data['address'],
-            'email' => $data['email'],
+            'country_id' => $data['country_id'],
+            'code' => $data['code'],
+            'default_name' => $data['default_name']
         ];
 
         $student = $this->studentFactory->create();
         if ($id) {
             $student->load($id);
             $this->getMessageManager()->addSuccessMessage(__('Edit thành công'));
-        } else {
-            $this->getMessageManager()->addSuccessMessage(__('Save thành công.'));
-        }
+        } 
         try{
-            $student->addData($newData);
-            $student->save();
-            return $this->resultRedirect->create()->setPath('cms/post/index');
+            if($student->getCollection()->addFieldToFilter('default_name', ['eq' => $data['default_name']])){
+                $this->getMessageManager()->addErrorMessage(__('Default Name đã tồn tại '));
+                return $this->resultRedirect->create()->setPath('project/post/new');
+                $student->getCollection()->getSelect()->reset(\Magento\Framework\DB\Select::WHERE);
+                if($student->getCollection()->addFieldToFilter('code' , ['eq' => $data['code']])->addFieldToFilter('country_id' , ['eq' => $data['country_id']])){
+                    $this->getMessageManager()->addErrorMessage(__('Code đã tồn tại tại country '));
+                    return $this->resultRedirect->create()->setPath('project/post/new');
+                }
+            }else{
+                $student->addData($newData);
+                $student->save();
+                return $this->resultRedirect->create()->setPath('project/post/index');
+            }
         }catch (\Exception $e){
             $this->getMessageManager()->addErrorMessage(__('Save thất bại.'));
         }

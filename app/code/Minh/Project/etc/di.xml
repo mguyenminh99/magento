@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Admin Grid  -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="minh_project_module_post_listing_data_source" xsi:type="string">Minh\Project\Model\ResourceModel\Regions\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Minh\Project\Model\ResourceModel\Regions\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">directory_country_region</argument>
+            <argument name="resourceModel" xsi:type="string">Minh\Project\Model\ResourceModel\Regions</argument>
+        </arguments>
+    </virtualType>
+    <!-- End Admin Grid -->
+    <type name="Magento\ImportExport\Model\Import\SampleFileProvider">
+       <arguments>
+           <argument name="samples" xsi:type="array">
+               <item name="import_sample" xsi:type="string">Minh_Project</item>
+           </argument>
+       </arguments>
+   </type>
+</config>

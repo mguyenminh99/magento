@@ -30,7 +30,7 @@
     <!-- End Plugin -->
 
     <!-- Admin Grid  -->
-    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+    <!-- <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
                 <item name="vnext_trainingmodule_post_listing_data_source" xsi:type="string">Vnext\TrainingModule\Model\ResourceModel\Training\Collection</item>
@@ -42,7 +42,7 @@
             <argument name="mainTable" xsi:type="string">students</argument>
             <argument name="resourceModel" xsi:type="string">Vnext\TrainingModule\Model\ResourceModel\Training</argument>
         </arguments>
-    </virtualType>
+    </virtualType> -->
     <!-- End Admin Grid -->
 
    

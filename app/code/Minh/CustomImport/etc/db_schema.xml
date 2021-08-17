@@ -1,6 +1,7 @@
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-        <table name="custom_import">
+        <table name="
+        ">
             <column xsi:type="int" name="id" unsigned="true" identity="true" nullable="false" comment="Id"/>
             <column xsi:type="varchar" name="name" length="255" nullable="false" comment="Name"/>
             <column xsi:type="varchar" name="description" nullable="false" length="255" comment="Description"/>
