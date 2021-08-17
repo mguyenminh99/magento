@@ -1,5 +1,5 @@
 <?php
-namespace Minh\CustomImport\Model\Import\CustomImport;
+namespace Minh\Project\Model\Import\ProjectImport;
 
 interface RowValidatorInterface extends \Magento\Framework\Validator\ValidatorInterface
 {

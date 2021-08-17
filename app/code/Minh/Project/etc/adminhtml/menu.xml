@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Minh_Project::directory" title="Directory" translate="title" module="Minh_Project" sortOrder="50" parent="Magento_Backend::stores" resource="Minh_Project::directory"/>
+        <add id="Minh_Project::region" title="Regions" module="Minh_Project" sortOrder="50" action="project/post/index" resource="Minh_Project::region" parent="Minh_Project::directory"/>
+    </menu>
+</config>

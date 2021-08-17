@@ -1,6 +1,6 @@
 <?php
 
-namespace Vnext\TrainingModule\Controller\Adminhtml\Post;
+namespace Minh\Project\Controller\Adminhtml\Region;
 
 class NewAction extends \Magento\Backend\App\Action
 {
@@ -18,9 +18,7 @@ class NewAction extends \Magento\Backend\App\Action
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu('Vnext_TrainingModule::helloworld');
-
-        $resultPage->getConfig()->getTitle()->prepend((__('Region')));
+        $resultPage->getConfig()->getTitle()->prepend((__('Region New')));
 
         return $resultPage;
     }

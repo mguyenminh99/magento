@@ -1,5 +1,5 @@
 <?php
-namespace Vnext\TrainingModule\Controller\Adminhtml\Post;
+namespace Vnext\TrainingModule\Controller\Adminhtml\Region;
 
 class Index extends \Magento\Backend\App\Action
 {
@@ -16,9 +16,8 @@ class Index extends \Magento\Backend\App\Action
 
 	public function execute()
 	{
-
 		$resultPage = $this->resultPageFactory->create();
-		$resultPage->getConfig()->getTitle()->prepend((__('region')));
+		$resultPage->getConfig()->getTitle()->prepend((__('Regions')));
 
 		return $resultPage;
 	}

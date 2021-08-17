@@ -3,7 +3,7 @@
     <update handle="styles"/>
     <body>
         <referenceContainer name="content">
-            <uiComponent name="vnext_training_module_new_student"/>
+            <uiComponent name="minh_project_module_new_regions"/>
         </referenceContainer>
     </body>
 </page>

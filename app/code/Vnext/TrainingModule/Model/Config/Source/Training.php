@@ -15,5 +15,6 @@ class Training implements \Magento\Framework\Option\ArrayInterface
             'name' => 'Name',
             'dob' => 'Date of birth'
         ];
+
     }
 }
