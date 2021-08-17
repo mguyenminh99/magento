@@ -246,12 +246,17 @@ class ProjectImport extends \Magento\ImportExport\Model\Import\Entity\AbstractEn
                }
            }
            if ($entityIn) {
-               $this->_connection->insertOnDuplicate($tableName, $entityIn,[
-                   self::ID,
-                   self::COUNTRY_ID,
-                   self::CODE,
-                   self::DEFAULT_NAME
-               ]);
+               if($tableName->addFieldToFilter('default_name', ['eq' => self::DEFAULT_NAME])){
+                    $this->addRowError(ValidatorInterface::ERROR_INVALID_TITLE, self::DEFAULT_NAME);
+               }
+               else{
+                    $this->_connection->insertOnDuplicate($tableName, $entityIn,[
+                        self::ID,
+                        self::COUNTRY_ID,
+                        self::CODE,
+                        self::DEFAULT_NAME
+                    ]);
+               }
            }
        }
        return $this;
