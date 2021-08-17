@@ -11,6 +11,9 @@ namespace Minh\Project\Model\Import;
 use Minh\Project\Model\Import\ProjectImport\RowValidatorInterface as ValidatorInterface;
 use Magento\ImportExport\Model\Import\ErrorProcessing\ProcessingErrorAggregatorInterface;
 use Magento\Framework\App\ResourceConnection;
+use Minh\Project\Model\RegionsFactory;
+use Minh\Project\Model\CountryFactory;
+
 
 class ProjectImport extends \Magento\ImportExport\Model\Import\Entity\AbstractEntity
 {
@@ -56,6 +59,10 @@ class ProjectImport extends \Magento\ImportExport\Model\Import\Entity\AbstractEn
    protected $_validators = [];
 
 
+   private $regionsFactory;
+   private $countryFactory;
+
+
    /**
     * @var \Magento\Framework\Stdlib\DateTime\DateTime
     */
@@ -81,7 +88,9 @@ class ProjectImport extends \Magento\ImportExport\Model\Import\Entity\AbstractEn
        \Magento\ImportExport\Model\ResourceModel\Helper $resourceHelper,
        \Magento\Framework\Stdlib\StringUtils $string,
        ProcessingErrorAggregatorInterface $errorAggregator,
-       \Magento\Customer\Model\GroupFactory $groupFactory
+       \Magento\Customer\Model\GroupFactory $groupFactory,
+       RegionsFactory $regionsFactory,
+       CountryFactory $countryFactory
    ) {
        $this->jsonHelper = $jsonHelper;
        $this->_importExportData = $importExportData;
@@ -91,6 +100,8 @@ class ProjectImport extends \Magento\ImportExport\Model\Import\Entity\AbstractEn
        $this->_connection = $resource->getConnection(\Magento\Framework\App\ResourceConnection::DEFAULT_CONNECTION);
        $this->errorAggregator = $errorAggregator;
        $this->groupFactory = $groupFactory;
+       $this->regionsFactory = $regionsFactory;
+       $this->countryFactory = $countryFactory;
    }
 
 
@@ -118,11 +129,22 @@ class ProjectImport extends \Magento\ImportExport\Model\Import\Entity\AbstractEn
     */
    public function validateRow(array $rowData, $rowNum)
    {
+        $regions = $this->regionsFactory->create()->getCollection()->addFieldToFilter('default_name', ['eq' => $rowData[self::DEFAULT_NAME]]);
+        $code = $this->countryFactory->create()->getCollection->addFieldToFilter('country_id', ['eq' => $rowData[self::COUNTRY_ID]]);
+        if ($regions) {
+            $this->addRowError(ValidatorInterface::ERROR_INVALID_TITLE, $rowNum);
+            return false;
+        }
+        if(!$code){
+            $this->addRowError(ValidatorInterface::ERROR_INVALID_TITLE, $rowNum);
+            return false;
+        }
        if (isset($this->_validatedRows[$rowNum])) {
            return !$this->getErrorAggregator()->isRowInvalid($rowNum);
        }
        $this->_validatedRows[$rowNum] = true;
        return !$this->getErrorAggregator()->isRowInvalid($rowNum);
+    
    }
 
    /**
